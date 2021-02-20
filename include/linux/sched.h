@@ -1580,6 +1580,12 @@ struct task_struct {
 	int fuse_boost;
 #endif
 
+	struct {
+		struct work_struct work;
+		atomic_t running;
+		bool free_stack;
+	} async_free;
+
 #ifdef CONFIG_ONEPLUS_HEALTHINFO
 	int stuck_trace;
 	struct oneplus_uifirst_monitor_info oneplus_stuck_info;
